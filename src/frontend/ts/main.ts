@@ -27,9 +27,9 @@ class Main implements EventListenerObject, ResponseLister {
             let datosVisuale:string = `<ul class="collection">`
             for (let disp of resputa) {
                 datosVisuale += ` <li class="collection-item avatar">`;
-                if (disp.type == 1) {
+                if (disp.type == 0) {
                     datosVisuale += `<img src="../static/images/lightbulb.png" alt="" class="circle">`;
-                } else if (disp.type == 2) {
+                } else if (disp.type == 1) {
                     datosVisuale += `<img src="../static/images/window.png" alt="" class="circle">`;
                 }
                 

@@ -5,6 +5,7 @@ var PORT    = 3000;
 var express = require('express');
 var app     = express();
 var utils   = require('./mysql-connector');
+var data    = require('./datos.json');
 
 // to parse application/json
 app.use(express.json()); 
@@ -44,13 +45,39 @@ app.get('/devices/', function(req, res) {
    
     console.log("Alguien pidio divices!");
     setTimeout(function(){
-        res.send(JSON.stringify(devices)).status(200);
+        //res.send(JSON.stringify(devices)).status(200);
+        res.send(JSON.stringify(data)).status(200);
     }, 2000);
     
 });
 
+app.get('/devid/', function(req, res) {
+   
+    console.log("Punto (3) Envìo de JSON a endpoint /dispositivos !");
+    setTimeout(function(){
+        res.send(JSON.stringify(data)).status(200);
+    }, 2000);
+    
+});
+
+app.get('/devid/:id', function(req,res){
+    //let id_num=req.params.id;
+    //console.log(id_num);
+    let device = data.find(x => x.id == req.params.id)
+    res.json(device);
+    //res.json(data[req.params.id]);
+    console.log("Punto (4) - Devolución de JSON por envío de parámetro");
+});
+
+app.post('/devid2/:id', function(req,res){
+    console.log(re.params.id + req.params.state);
+    console.log("Punto(5)");
+});
+
+
 app.listen(PORT, function(req, res) {
     console.log("NodeJS API running correctly");
+    console.log("Punto (2) El nombre del item 2 es " + data[2].name + " por lo tanto funciona la lectura del archivo json a una variable");
 });
 
 //=======[ End of file ]=======================================================
