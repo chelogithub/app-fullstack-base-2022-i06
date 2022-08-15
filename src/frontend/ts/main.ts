@@ -56,7 +56,7 @@ class Main implements EventListenerObject, ResponseLister {
                 let checkbox = document.getElementById("cb_" + disp.id);
                 checkbox.addEventListener("click",this)
             }
-        
+
           } else {
               alert("Algo salio mal")
           }
