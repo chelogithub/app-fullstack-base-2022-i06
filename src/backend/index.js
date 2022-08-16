@@ -55,17 +55,24 @@ app.get('/devid/', function(req, res) {
    
     console.log("Punto (3) Envìo de JSON a endpoint /dispositivos !");
     setTimeout(function(){
-        res.send(JSON.stringify(data)).status(200);
+        //res.send(JSON.stringify(data)).status(200);
+        res.json(datos);
     }, 2000);
     
 });
 
-app.get('/devid/:id', function(req,res){
+app.get('/devid/:id', function(req,res){  //EN el callback tenemos el objeto request y response, req: datos de conexion res: datos que envío (res.send o res.json)
     //let id_num=req.params.id;
     //console.log(id_num);
-    let device = data.find(x => x.id == req.params.id)
-    res.json(device);
     //res.json(data[req.params.id]);
+    //Primer ejemplo
+    let datoFiltrado = datos.filter((item)=>item.id===req.params.id);
+    
+    
+    
+    let device = data.find(x => x.id == req.params.id);
+    res.json(device); // Solo mando JSON
+    
     console.log("Punto (4) - Devolución de JSON por envío de parámetro");
 });
 
