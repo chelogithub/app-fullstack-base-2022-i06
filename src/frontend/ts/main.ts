@@ -21,7 +21,61 @@ class Main implements EventListenerObject, ResponseLister {
         if (status == 200) {
             let resputaString: string = response;
             let resputa: Array<Device> = JSON.parse(resputaString);
-            let cajaDiv = document.getElementById("caja");
+
+                        //******************** AGREGADO PARA CARDS *********************//
+
+                        let caja2Div    =   document.getElementById("caja2");
+                        let toaddhtml:string =``;
+                        for (let disp of resputa) {
+                        toaddhtml+=`<div class="col xs12 s12 m6 l4 xl3"> 
+                                        <div class="card blue-grey darken-1" id="card${disp.id}" >
+                                            <div class="card-content white-text">
+                                                 <div align='center'>`
+                        if (disp.type == 1) {
+                            toaddhtml += `<img src="../static/images/lightbulb.png" alt="" class="circle">`;
+                        } else if (disp.type == 2) {
+                            toaddhtml += `<img src="../static/images/window.png" alt="" class="circle">`;
+                        }
+                        toaddhtml += `  
+                                        <span class="card-title"><b>${disp.name}</b></span>
+                                        <p><i>${disp.description}</i></p>
+                                       
+                                        <br>
+                                                <div class="switch">
+                                                    <label>
+                                                    Off
+                                                    <input `
+                                                    if (disp.state) {
+                                                        toaddhtml += `checked`;
+                                                         }
+                                                    
+                                                    toaddhtml += `
+                                                    type="checkbox" id="cb_${disp.id}">
+                                                    <span class="lever"></span>
+                                                    On
+                                                    </label>
+                                                </div>
+
+                                                
+                                        <br>
+                                                    
+                                                    <button id="btn_del${disp.id}" class="btn waves-effect waves-light button-view btn-small red"><i class="material-icons center">delete</i></button>
+                                                    <button id="btn_mod${disp.id}" data-target="modal_Edit_Device" class="btn modal-trigger">editar</button>  
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>`;
+                                                }
+
+                      caja2Div.innerHTML = toaddhtml;
+                        //class="btn waves-effect waves-light button-view btn-small green"><i class="material-icons center">create</i></button>
+                        //******************** AGREGADO PARA CARDS *********************//
+
+
+
+            //let resputaString: string = response;
+            //let resputa: Array<Device> = JSON.parse(resputaString);
+           /* let cajaDiv = document.getElementById("caja");
 
             cajaDiv.setAttribute("class", "talcoa");
             cajaDiv.setAttribute("id", "otro");
@@ -44,7 +98,7 @@ class Main implements EventListenerObject, ResponseLister {
                 <div class="switch">
                 <label>
                   Off
-                  <input type="checkbox" id="cb_${disp.id}">
+                  <input type="checkbox" id="cbd_${disp.id}">
                   <span class="lever"></span>
                   On
                 </label>
@@ -53,15 +107,19 @@ class Main implements EventListenerObject, ResponseLister {
               </li>`
             }
             datosVisuale += `</ul>`
-          
+            
 
-        
+            cajaDiv.innerHTML = datosVisuale; */
 
-            cajaDiv.innerHTML = datosVisuale;
+            //    Agrego los eventLIstener a los elementos que quiero escuchar  
 
             for (let disp of resputa) {
                 let checkbox = document.getElementById("cb_" + disp.id);
-                checkbox.addEventListener("click",this)
+                checkbox.addEventListener("click",this);
+                let btnEliminar = document.getElementById("btn_del" + disp.id);
+                btnEliminar.addEventListener("click",this);
+                let btnModificar = document.getElementById("btn_mod" + disp.id);
+                btnModificar.addEventListener("click",this);
             }
         
           } else {
@@ -81,16 +139,21 @@ class Main implements EventListenerObject, ResponseLister {
       
         if (e.type == "click" && objetoEvento.id.startsWith("cb_")) {
 
-          //  console.log(objetoEvento.id,)
+            console.log(objetoEvento.id,)
             console.log("Se hizo click para prender o apagar")
             let datos = { "id": objetoEvento.id.substring(3), "state": objetoEvento.checked };
             this.framework.ejecutarRequest("POST","http://localhost:8000/actualizar", this,datos)
             
-        }else if (e.type == "click") {
+        }else if (e.type == "click" && ( objetoEvento.id.startsWith("btn"))){
+      
+            console.log("Se hizo click en  " + objetoEvento.id,)
+            //alert("Hola " +  this.listaPersonas[0].nombre +" ");    
+        } 
+        else if (e.type == "click" ) {
       
             
-            alert("Hola " +  this.listaPersonas[0].nombre +" ");    
-        } else {
+        alert("Hola " +  this.listaPersonas[0].nombre +" ");    
+        }else {
             
             let elemento = <HTMLInputElement>this.framework.recuperarElemento("input1");
             if (elemento.value.length>5) {
@@ -112,14 +175,15 @@ window.addEventListener("load", () => {
     M.updateTextFields();
     var elems1 = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems1, "");
-    let btn = document.getElementById("btnSaludar");
-    let btn2 = document.getElementById("btnDoble");
+    //let btn = document.getElementById("btnSaludar");
+    //let btn2 = document.getElementById("btnDoble");
     let main: Main = new Main();
     main.nombre = "Matias"
 
-    btn2.addEventListener("dblclick", main);
-    btn.addEventListener("click", main);
-
+    //btn2.addEventListener("dblclick", main);
+    //btn.addEventListener("click", main);
+    this.btnSalvarNew.addEventListener("click", main); //Se agega Listener para boton del modal de Agregar Dispositivo
+    this.btnSalvarMod.addEventListener("click", main); //Se agega Listener para boton del modal de Modificar Dispositivo
 });
 
 

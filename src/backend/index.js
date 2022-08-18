@@ -23,7 +23,49 @@ var  devices = [
         'id': 2, 
         'name': 'Ventilador 1', 
         'description': 'Ventilador Habitacion', 
+        'state': 0, 
+        'type': 2, 
+    },
+    { 
+        'id': 3, 
+        'name': 'Lampara 2', 
+        'description': 'Luz de la entrada', 
         'state': 1, 
+        'type': 1, 
+    },
+    { 
+        'id': 4, 
+        'name': 'Ventilador 1', 
+        'description': 'Ventilador Habitacion', 
+        'state': 1, 
+        'type': 2, 
+    },
+    { 
+        'id': 5, 
+        'name': 'Lampara 1', 
+        'description': 'Luz living', 
+        'state': 1, 
+        'type': 1, 
+    },
+    { 
+        'id': 6, 
+        'name': 'Ventilador 1', 
+        'description': 'Ventilador Habitacion', 
+        'state': 0, 
+        'type': 2, 
+    },
+    { 
+        'id': 7, 
+        'name': 'Lampara 2', 
+        'description': 'Luz de la entrada', 
+        'state': 1, 
+        'type': 1, 
+    },
+    { 
+        'id': 8, 
+        'name': 'Ventilador 1', 
+        'description': 'Ventilador Habitacion', 
+        'state': 0, 
         'type': 2, 
     },
 ];
@@ -44,13 +86,13 @@ app.get('/devices/', function(req, res) {
    
     console.log("Alguien pidio divices!");
     setTimeout(function(){
-        res.send(JSON.stringify(devices)).status(200);
-    }, 2000);
+        res.send(JSON.stringify(devices)).status(200);      //Lo envío por texto plano
+    }, 200);
     
 });
 
 app.listen(PORT, function(req, res) {
-    console.log("NodeJS API running correctly");
+    console.log("NodeJS API running correctly");            //Doy de alta la API
 });
 
 //=======[ End of file ]=======================================================
