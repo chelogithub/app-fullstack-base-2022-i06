@@ -128,7 +128,16 @@ class Main implements EventListenerObject, ResponseLister {
     }
     handlerResponseActualizar(status: number, response: string) {
         if (status == 200) {
-            alert("Se acutlizo correctamente")    
+            if(response=="new_ok"){
+                let cierre=this.framework.recuperarElemento("closeModalNew");
+                cierre.click();
+            }
+            else if(response=="mod_ok"){
+                let cierre2=this.framework.recuperarElemento("closeModalEdit");
+                cierre2.click();
+            }
+            
+
         } else {
             alert("Error")    
         }
@@ -144,16 +153,47 @@ class Main implements EventListenerObject, ResponseLister {
             let datos = { "id": objetoEvento.id.substring(3), "state": objetoEvento.checked };
             this.framework.ejecutarRequest("POST","http://localhost:8000/actualizar", this,datos)
             
-        }else if (e.type == "click" && ( objetoEvento.id.startsWith("btn"))){
+        }else if (e.type == "click" && ( objetoEvento.id.startsWith("xbtn"))){
       
             console.log("Se hizo click en  " + objetoEvento.id,)
             //alert("Hola " +  this.listaPersonas[0].nombre +" ");    
         } 
-        else if (e.type == "click" ) {
-      
-            
-        alert("Hola " +  this.listaPersonas[0].nombre +" ");    
-        }else {
+        else if(e.type == "click" && ( objetoEvento.id.startsWith("btnSalvarNew"))){
+                console.log(objetoEvento.id,)
+                let fld_new_Name =this.framework.recuperarElemento("new_Name")  as HTMLInputElement;
+                let fld_new_Desc =this.framework.recuperarElemento("new_Desc") as HTMLInputElement;
+                if((fld_new_Name.value =='')||(fld_new_Desc.value ==''))
+                {
+                    alert("No se almacenarán campos vacíos")
+                }
+                else 
+                {  // { "id": 7, "name": "Lámpara 3", "description": "Luz Balcón", "state": 1, "type": 1 }
+                    let datos = { "id": 7, "name": fld_new_Name.value, "description": fld_new_Desc.value, "state": 1, "type": 1 };
+                    console.log(datos)
+                    this.framework.ejecutarRequest("POST","http://localhost:8000/nuevo", this,datos)
+                }
+   
+        }
+        else if(e.type == "click" && ( objetoEvento.id.startsWith("btnSalvarMod"))){
+            console.log(objetoEvento.id,)
+            let fld_mod_Name =this.framework.recuperarElemento("mod_Name")  as HTMLInputElement;
+            let fld_mod_Desc =this.framework.recuperarElemento("mod_Desc") as HTMLInputElement;
+            if((fld_mod_Name.value =='')||(fld_mod_Desc.value ==''))
+            {
+                alert("No se modificarán campos vacíos")
+            }
+            else 
+            {  // { "id": 7, "name": fld_mod_Name.value, "description": fld_mod_Desc.value, "state": 1, "type": 1 }
+                let datos = { "id": 7, "name": fld_mod_Name.value, "description": fld_mod_Desc.value, "state": 1, "type": 1 };
+                console.log(datos)
+                this.framework.ejecutarRequest("POST","http://localhost:8000/modificar", this,datos)
+            }
+
+    }
+        
+        
+        
+        /*else {
             
             let elemento = <HTMLInputElement>this.framework.recuperarElemento("input1");
             if (elemento.value.length>5) {
@@ -165,7 +205,7 @@ class Main implements EventListenerObject, ResponseLister {
             }
 
             
-        }
+        }*/
     }
 }
 
