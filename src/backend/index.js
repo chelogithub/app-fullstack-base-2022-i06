@@ -1,7 +1,6 @@
 //=======[ Settings, Imports & Data ]==========================================
 
 var PORT    = 3000;
-
 var express = require('express');
 var app     = express();
 var utils   = require('./mysql-connector');
