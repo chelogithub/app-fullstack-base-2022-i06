@@ -214,12 +214,35 @@ class Main implements EventListenerObject, ResponseLister {
                 console.log(objetoEvento.id,)
                 let fld_new_Name =this.framework.recuperarElemento("new_Name") as HTMLInputElement;
                 let fld_new_Desc =this.framework.recuperarElemento("new_Desc") as HTMLInputElement;
-                let sel_new_Estado =this.framework.recuperarElemento("sel_control") ;
-                let sel_new_Tipo =this.framework.recuperarElemento("sel_dispositivo") ;
+
+                let discreto =this.framework.recuperarElemento("new_discreto") as HTMLInputElement;
+                let analogico =this.framework.recuperarElemento("new_analogico") as HTMLInputElement;
+
+                let luces =this.framework.recuperarElemento("new_luces") as HTMLInputElement;
+                let persiana =this.framework.recuperarElemento("new_persiana") as HTMLInputElement;
+                let otros =this.framework.recuperarElemento("new_otros") as HTMLInputElement;
+
+
                 let state = 0;
                 let type = 0;
 
-                if((fld_new_Name.value =='')||(fld_new_Desc.value ==''))
+
+                if(discreto.checked== true){
+                    state=1;} 
+    
+                if(analogico.checked == true){
+                    state=2;} 
+
+                if(luces.checked == true){
+                    type=1;} 
+    
+                if(persiana.checked == true){
+                    type=2;} 
+    
+                if(otros.checked == true){
+                    type=3;} 
+
+                if((fld_new_Name.value =='')||(fld_new_Desc.value =='')||(state ==0)||(type ==0))
                 {
                     alert("No se almacenarán campos vacíos")
                 }
@@ -236,17 +259,43 @@ class Main implements EventListenerObject, ResponseLister {
             console.log(objetoEvento.id,)
             let fld_mod_Name =this.framework.recuperarElemento("mod_Name")  as HTMLInputElement;
             let fld_mod_Desc =this.framework.recuperarElemento("mod_Desc") as HTMLInputElement;
-            if((fld_mod_Name.value =='')||(fld_mod_Desc.value ==''))
+
+            let discreto =this.framework.recuperarElemento("mod_discreto") as HTMLInputElement;
+            let analogico =this.framework.recuperarElemento("mod_analogico") as HTMLInputElement;
+
+            let luces =this.framework.recuperarElemento("mod_luces") as HTMLInputElement;
+            let persiana =this.framework.recuperarElemento("mod_persiana") as HTMLInputElement;
+            let otros =this.framework.recuperarElemento("mod_otros") as HTMLInputElement;
+            
+            let type=0;
+            let state=0;
+
+            if(discreto.checked== true){
+                state=1;} 
+
+            if(analogico.checked == true){
+                state=2;} 
+
+            if(luces.checked == true){
+                type=1;} 
+
+            if(persiana.checked == true){
+                type=2;} 
+
+            if(otros.checked == true){
+                type=3;} 
+
+            if((fld_mod_Name.value =='')||(fld_mod_Desc.value =='')||(state ==0)||(type ==0))
             {
                 alert("No se modificarán campos vacíos")
             }
             else 
             {  
-                let datos = { "id": id_Card, "name": fld_mod_Name.value, "description": fld_mod_Desc.value, "state": 1, "type": 1 };
+                let datos = { "id": id_Card, "name": fld_mod_Name.value, "description": fld_mod_Desc.value, "state": state, "type": type};
                 console.log(datos)
                 this.framework.ejecutarRequest("POST","http://localhost:8000/modificar", this,datos)
             }
-
+            alert("para ver estado")
     }
     /*else if(e.type == "select" ){
         console.log("alerta por select " + objetoEvento.id,)
@@ -282,8 +331,8 @@ window.addEventListener("load", () => {
 
     this.btnSalvarNew.addEventListener("click", main); //Se agega Listener para boton del modal de Agregar Dispositivo
     this.btnSalvarMod.addEventListener("click", main); //Se agega Listener para boton del modal de Modificar Dispositivo
-    this.sel_control.addEventListener("click", main); //Se agega Listener para boton del modal de Modificar Dispositivo
-    this.sel_dispositivo.addEventListener("click", main); //Se agega Listener para boton del modal de Modificar Dispositivo
+    //this.sel_control.addEventListener("click", main); //Se agega Listener para boton del modal de Modificar Dispositivo
+    //this.sel_dispositivo.addEventListener("click", main); //Se agega Listener para boton del modal de Modificar Dispositivo
     /*this.document.addEventListener('DOMContentLoaded', function() {
         var elems = document.querySelectorAll('select');
         var instance = M.FormSelect.init(elems, Option);

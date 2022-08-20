@@ -42,8 +42,6 @@ app.post("/nuevo",function(req,res){
 app.post("/modificar",function(req,res){
     console.log("Llegue al servidor para modificar items")
     console.log(Object.keys(req.body).length)
-    //data.splice(data.findIndex(x => x.id==req.body.id),1);
-    //data.push(req.body);
     data[data.findIndex(x => x.id==req.body.id)].name = req.body.name;
     data[data.findIndex(x => x.id==req.body.id)].description = req.body.description;
     data[data.findIndex(x => x.id==req.body.id)].type = req.body.type;
