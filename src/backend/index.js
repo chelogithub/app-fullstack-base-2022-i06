@@ -3,7 +3,7 @@
 var PORT    = 3000;
 var express = require('express');
 var app     = express();
-var utils   = require('./mysql-connector');
+//var utils   = require('./mysql-connector');  //no llego a implementarlo
 var data    = require('./datos.json');
 
 // to parse application/json
@@ -12,6 +12,8 @@ app.use(express.json());
 app.use(express.static('/home/node/app/static/'));
 
 //=======[ Main module code ]==================================================
+
+//=======[ Endpoint /actualizar-> Actualiza solo estado de dispositivo]===========
 app.post("/actualizar",function(req,res){
     console.log("Llegue al servidor")
     console.log(Object.keys(req.body).length)
@@ -28,7 +30,7 @@ app.post("/actualizar",function(req,res){
         res.send("ERROR");
     }
 });
-
+//=======[ Endpoint /eliminar-> Envío datos de item a modificar]==================
 app.post("/nuevo",function(req,res){
     console.log("Llegue al servidor para agregar items nuevos")
     console.log(Object.keys(req.body).length)
@@ -36,7 +38,7 @@ app.post("/nuevo",function(req,res){
     console.log(req.body);
     res.send("new_ok");
     });
-
+//=======[ Endpoint /modficar-> Envío datos de item a modificar]==================
 
 app.post("/modificar",function(req,res){
     console.log("Llegue al servidor para modificar items")
@@ -48,6 +50,7 @@ app.post("/modificar",function(req,res){
     console.log(req.body);
     res.send("mod_ok");
     });
+//=======[ Endpoint /eliminar-> Envío datos de item a eliminar]===================
 
 app.post("/eliminar",function(req,res){
     console.log("Llegue al servidor para eliminar items");
@@ -58,6 +61,7 @@ app.post("/eliminar",function(req,res){
     console.log(data);
     res.send("del_ok");
     });
+//=======[ Endpoint /devices -> Pido listado de dispositivos]=====================
 
 app.get('/devices/', function(req, res) {
    
@@ -67,9 +71,10 @@ app.get('/devices/', function(req, res) {
     }, 100);
     
 });
+//=======[ Doy de alta la API ]==================================================
 
 app.listen(PORT, function(req, res) {
-    console.log("NodeJS API running correctly");            //Doy de alta la API
+    console.log("NodeJS API running correctly");            
 });
 
 //=======[ End of file ]=======================================================

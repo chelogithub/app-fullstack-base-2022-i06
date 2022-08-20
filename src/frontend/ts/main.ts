@@ -1,6 +1,6 @@
 declare const M;
-var index_data = 0;
-var id_Card;
+var index_data = 0;     //Utilizado para la creación de nuevos elementos
+var id_Card;            //Lectura del id de la card
 class Main implements EventListenerObject, ResponseLister {
     public framework: FrameWork = new FrameWork();
     constructor() {
@@ -13,11 +13,12 @@ class Main implements EventListenerObject, ResponseLister {
         if (status == 200) {
             let resputaString: string = response;
             let resputa: Array<Device> = JSON.parse(resputaString);
-
-                        //******************** AGREGADO PARA CARDS *********************//
-
+                        //-------------------------------------------------------------------------------//
+                        //                              AGREGADO PARA CARDS 
+                        //-------------------------------------------------------------------------------//     
                         let caja2Div    =   document.getElementById("caja2");
                         let toaddhtml:string =``;
+                        /**** Se recorren todos lo elmentos del array para agregar los controles de cada uno ****/
                         for (let disp of resputa) {
                         
                         if (disp.id > index_data) 
@@ -65,9 +66,9 @@ class Main implements EventListenerObject, ResponseLister {
                                                 }
 
                       caja2Div.innerHTML = toaddhtml;
-
-            //    Agrego los eventLIstener a los elementos que quiero escuchar  
-
+            //-------------------------------------------------------------------------------//
+            //                Agrego los eventLIstener de las cards creadas
+            //-------------------------------------------------------------------------------//
             for (let disp of resputa) {
                 let checkbox = document.getElementById("cb_" + disp.id);
                 checkbox.addEventListener("click",this);
@@ -81,6 +82,9 @@ class Main implements EventListenerObject, ResponseLister {
               alert("Algo salio mal")
           }
     }
+    //-------------------------------------------------------------------------------//
+    //Escucho la respuesta del BackEnd para recargar página luego de actualizar JSON
+    //-------------------------------------------------------------------------------//
     handlerResponseActualizar(status: number, response: string) {
         if (status == 200) {
             if(response=="new_ok"){
@@ -96,13 +100,12 @@ class Main implements EventListenerObject, ResponseLister {
             else if(response=="del_ok"){
                 location.reload();
             }
-            
-
-        } else {
+            } else {
             alert("Error")    
         }
         
     }
+    // Recibo los eventos y los proceso
     public handleEvent(e:Event): void {
         let objetoEvento = <HTMLInputElement>e.target;
         
@@ -231,7 +234,8 @@ class Main implements EventListenerObject, ResponseLister {
     }
     }
 }
-//Agrego los eventLIstener al cargar la página
+
+//----------------- Agrego los eventListener al cargar la página -----------------//
 
 window.addEventListener("load", () => {
     var elems = document.querySelectorAll('select');
@@ -240,7 +244,6 @@ window.addEventListener("load", () => {
     var elems1 = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems1, "");
     let main: Main = new Main();
-   // main.nombre = "Matias"
 
     this.btnSalvarNew.addEventListener("click", main); //Se agega Listener para boton del modal de Agregar Dispositivo
     this.btnSalvarMod.addEventListener("click", main); //Se agega Listener para boton del modal de Modificar Dispositivo
