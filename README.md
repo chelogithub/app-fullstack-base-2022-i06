@@ -167,6 +167,8 @@ Para agregar un dispositvo hacemos click en el botón
     
 Allí aparecerá el siguiente formulario para cargar los datos relevantes del dispositivo.
     
+   ![](doc/add_panel.png)
+    
 Completá el formulario y luego presiona Salvar.
     
 Al salvar la página la misma se cargará con las modificaciones efectuadas, en el caso de haber un error lo informará mediante una ventana. Cabe aclarar que el formulario verifica que los campos estén completos, si no lo están aparecerá una leyenda como la siguiente.
