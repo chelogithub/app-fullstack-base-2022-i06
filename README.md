@@ -185,8 +185,36 @@ Al presionar edit, se abrará una pantalla similar a la de dispositivo nuevo par
 
 ### Frontend
 
-La implementación del Frontend se realizó en Typescript y se utilizó matraialize como estilo para el diseño de la página web.
+La implementación del Frontend se realizó en TypeScript y se utilizó matraialize como estilo para el diseño de la página web.
 
+El frontend cuenta con la siguiente estructura de archivos.
+
+   ![](doc/back_files.png)
+   
+<details><summary><b>Detalles de los archivos</b></summary><br>
+
+`tsconfig.json` 
+
+En este archivo se especifican las opciones para el compilador
+
+`ResponseLister.ts` 
+
+Se realizan las declaraciones de los handlerResponse de la class Framework
+
+`framework.ts` 
+
+Se define la class Framework, la cual nos permite.
+
+* Recuperar los elementos HTML de la WEBPAGE
+* Ejecutar Requests de manera asíncrónica.
+
+`device.ts` 
+
+Se declara la class Devices como estructura
+
+`main.ts` 
+
+Contiene la implementaciòn del frontend donde se realiza las interacciones con el backend y la web page.
 
 
 ### Backend
