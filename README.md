@@ -163,13 +163,13 @@ En esta sección podés ver los detalles específicos de funcionamiento del cód
     
 Para agregar un dispositvo hacemos click en el botón 
     
-    ![](doc/add_device.png)
+   ![](doc/add_device.png)
     
 Allí aparecerá el siguiente formulario para cargar los datos relevantes del dispositivo.
 Completa el formulario y luego presiona Salvar.
 Al salvar la página se recargará con las modificaciones efectuadas, en el caso de haber un error lo informará mediante una ventana, cabe aclarar que el formulario verifica que los campos estén completos a la hora de agregar el elemento, si están incompletos aparecerá una leyenda como la siguiente.
     
-    ![](doc/no_empty.png)
+   ![](doc/no_empty.png)
     
 ### Modificar/Eliminar un dispositivo
     
