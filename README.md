@@ -191,7 +191,7 @@ El frontend cuenta con la siguiente estructura de archivos.
 
    ![](doc/back_files.png)
    
-<details><summary><b>Detalles de los archivos</b></summary><br>
+Detalles de los archivos
 
 `tsconfig.json` 
 
