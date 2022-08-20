@@ -158,7 +158,16 @@ En esta sección podés ver los detalles específicos de funcionamiento del cód
 
 ### Agregar un dispositivo
 
-Completá los pasos para agregar un dispositivo desde el cliente web.
+    (doc/webpage.png)
+Para agregar un dispositvo hacemos click en el botón 
+    (doc/add_device.png)
+Allí aparecerá el siguiente formulario para cargar los datos relevantes del dispositivo.
+Completa el formulario y luego presiona Salvar.
+Al salvar la página se recargará con las modificaciones efectuadas, en el caso de haber un error lo informará mediante una ventana, cabe aclarar que el formulario verifica que los campos estén completos a la hora de agregar el elemento, si están incompletos aparecerá una leyenda como la siguiente.
+    (doc/no_empty.png)
+Cada dispositivo que se agrega se representa mediante un tarjeta, en ella podrás modificar de manera directa el estado, editar o eliminar el dispositivo mediante los botones presentes en la misma.
+    (doc/cardpng)
+Al presionar edit, se abrará una pantalla similar a la de dispositivo nuevo para que puedas modificar todos los elementos del mismo.
 
 ### Frontend
 
