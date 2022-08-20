@@ -37,52 +37,76 @@
                         <div class="input-field col s6 m6 l6 xl6">
                             <input placeholder="Descripción" id="new_Desc" type="text" class="validate">
                             <label for="disabled">Descripción</label>
-                          </div>
-                      
-                      <div class="input-field col s6 m6 l6 xl6">
-                                <b><h6>Tipo de entrada</h6></b>
-                                <form action="#">
-                                    <p>
-                                    <label>
-                                        <input name="inputType" class="with-gap" type="radio" checked />
-                                        <span>Discreto</span>
-                                    </label>
-                                    </p>
-                                    <p>
-                                    <label>
-                                        <input name="inputType" class="with-gap" type="radio" />
-                                        <span>Análogo</span>
-                                    </label>
-                                    </p>
-                                </form>
                         </div>
+                      
                         <div class="input-field col s6 m6 l6 xl6">
-                            <b><h6>Tipo de Dispositivo</h6></b>
+                                    
+                                    <div class="input-field s6 m6 l6 xl6" id="sel_control">
+                                        <select class="icons">
+                                        <option value="" disabled selected>Elija tipo de control</option>
+                                        <option value="1">Discreto</option>
+                                        <option value="2">Análogo</option>
+
+                                        </select>
+                                        <label>Tipos de control</label>
+                                    </div>
+                            
+                            
+                                   <!-- <b><h6>Tipo de estado</h6></b>
+                                    <form action="#">
+                                        <p>
+                                        <label>
+                                            <input name="inputType" class="with-gap" type="radio" checked />
+                                            <span>Discreto</span>
+                                        </label>
+                                        </p>
+                                        <p>
+                                        <label>
+                                            <input name="inputType" class="with-gap" type="radio" />
+                                            <span>Análogo</span>
+                                        </label>
+                                        </p>
+                                    </form>-->
+                            </div>
+
+                        <div class="input-field col s6 m6 l6 xl6">
+
+                                <div class="input-field s6 m6 l6 xl6">
+                                    <select class="icons" id="sel_dispositivo">
+                                        <option value="" disabled selected>Elija tipo de dispositivo</option>
+                                        <option value="1" data-icon="../static/images/lightbulb.png">Luces</option>
+                                        <option value="2" data-icon="../static/images/window.png">Persiana</option>
+                                        <option value="3" data-icon="../static/images/others.png">Otros</option>
+                                    </select>
+                                    <label>Tipos de dispositivos</label>
+                                </div>
+                            <!--
                             <form action="#">
                                 <p>
                                 <label>
                                     <input name="inputType2" class="with-gap" type="radio" checked />
-                                    <span>Discreto</span>
+                                    <span>Lámpara</span>
                                 </label>
                                 </p>
                                 <p>
                                 <label>
-                                    <input name="inputType2" class="with-gap" type="radio" />
-                                    <span>Análogo</span>
+                                    <input name="inputType23" class="with-gap" type="radio" />
+                                    <span>Ventana</span>
                                 </label>
                                 </p>
-                            </form>
-                        </div>
+                            </form> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <div align='center'>
+                                    <button id="btnSalvarNew" class="btn waves-effect waves-light button-view red"><i class="material-icons left">save</i>Salvar</button>
+                                </div>
+                    <div class="modal-footer">
+                        <a href="#!" id="closeModalNew" class="modal-close waves-effect waves-green btn-flat" >Salir</a>
                     </div>
-                 </div>
-                    <div align='center'>
-                        <button id="btnSalvarNew" class="btn waves-effect waves-light button-view red"><i class="material-icons left">save</i>Salvar</button>
-                    </div>
-                <div class="modal-footer">
-                  <a href="#!" id="closeModalNew" class="modal-close waves-effect waves-green btn-flat" >Salir</a>
                 </div>
-              </div>
-              <!-- FIN---Definición del modal para el ingreso de dispositivos-->
+            </div>
+            <!-- --FIN---Definición del modal para el ingreso de dispositivos-->
             <!-- INICIO---Definición del modal para el ingreso de dispositivos-->
             <div id="modal_Edit_Device" class="modal">
                 <div class="modal-content">
@@ -97,7 +121,7 @@
                           </div>
                       
                       <div class="input-field col s6 m6 l6 xl6">
-                                <b><h6>Modificar entrada</h6></b>
+                                <b><h6>Modificar estado</h6></b>
                                 <form action="#">
                                     <p>
                                     <label>
@@ -119,13 +143,13 @@
                                 <p>
                                 <label>
                                     <input name="inputType2" class="with-gap" type="radio" checked />
-                                    <span>Discreto</span>
+                                    <span>Lámpara</span>
                                 </label>
                                 </p>
                                 <p>
                                 <label>
                                     <input name="inputType2" class="with-gap" type="radio" />
-                                    <span>Análogo</span>
+                                    <span>Ventana</span>
                                 </label>
                                 </p>
                             </form>

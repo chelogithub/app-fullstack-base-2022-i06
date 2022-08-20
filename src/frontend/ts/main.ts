@@ -1,4 +1,8 @@
 declare const M;
+var index_data = 0;
+var id_Card;
+//var instance = M.FormSelect.getInstance(elem);
+
 class Main implements EventListenerObject, ResponseLister {
     public listaPersonas: Array<Persona> = new Array();
     public etidadesAcciones: Array<Acciones> = new Array();
@@ -27,6 +31,14 @@ class Main implements EventListenerObject, ResponseLister {
                         let caja2Div    =   document.getElementById("caja2");
                         let toaddhtml:string =``;
                         for (let disp of resputa) {
+                        
+                        if (disp.id > index_data) 
+                        {
+                            index_data = disp.id;
+                            console.log(index_data);
+                        }
+    
+
                         toaddhtml+=`<div class="col xs12 s12 m6 l4 xl3"> 
                                         <div class="card blue-grey darken-1" id="card${disp.id}" >
                                             <div class="card-content white-text">
@@ -35,6 +47,8 @@ class Main implements EventListenerObject, ResponseLister {
                             toaddhtml += `<img src="../static/images/lightbulb.png" alt="" class="circle">`;
                         } else if (disp.type == 2) {
                             toaddhtml += `<img src="../static/images/window.png" alt="" class="circle">`;
+                        } else  {
+                            toaddhtml += `<img src="../static/images/others.png" alt="" class="circle">`;
                         }
                         toaddhtml += `  
                                         <span class="card-title"><b>${disp.name}</b></span>
@@ -59,8 +73,8 @@ class Main implements EventListenerObject, ResponseLister {
                                                 
                                         <br>
                                                     
-                                                    <button id="btn_del${disp.id}" class="btn waves-effect waves-light button-view btn-small red"><i class="material-icons center">delete</i></button>
-                                                    <button id="btn_mod${disp.id}" data-target="modal_Edit_Device" class="btn modal-trigger">editar</button>  
+                                                    <button id="btn_del${disp.id}" class="btn waves-effect waves-light button-view btn red">del</button>
+                                                    <button id="btn_mod${disp.id}" data-target="modal_Edit_Device" class="btn modal-trigger">edit</button>  
                                                     </div>
                                             </div>
                                         </div>
@@ -131,10 +145,15 @@ class Main implements EventListenerObject, ResponseLister {
             if(response=="new_ok"){
                 let cierre=this.framework.recuperarElemento("closeModalNew");
                 cierre.click();
+                location.reload();
             }
             else if(response=="mod_ok"){
                 let cierre2=this.framework.recuperarElemento("closeModalEdit");
                 cierre2.click();
+                location.reload();
+            }
+            else if(response=="del_ok"){
+                location.reload();
             }
             
 
@@ -145,34 +164,73 @@ class Main implements EventListenerObject, ResponseLister {
     }
     public handleEvent(e:Event): void {
         let objetoEvento = <HTMLInputElement>e.target;
-      
+        
+        //----------------- ACTAULIZAR SWITCH -----------------//
+
         if (e.type == "click" && objetoEvento.id.startsWith("cb_")) {
 
             console.log(objetoEvento.id,)
             console.log("Se hizo click para prender o apagar")
             let datos = { "id": objetoEvento.id.substring(3), "state": objetoEvento.checked };
             this.framework.ejecutarRequest("POST","http://localhost:8000/actualizar", this,datos)
-            
-        }else if (e.type == "click" && ( objetoEvento.id.startsWith("xbtn"))){
+        
+        //----------------- CARGAR DATOS PARA MODIFICAR ELEMENTO -----------------//    
+        
+        }else if (e.type == "click" && ( objetoEvento.id.startsWith("btn_mod"))){
       
             console.log("Se hizo click en  " + objetoEvento.id,)
+            //220819
+            id_Card = objetoEvento.id.substring(7);//let nro_card = objetoEvento.id.substring(7);
+            
+            //let card =this.framework.recuperarElemento("card"+nro_card) as HTMLInputElement;
+            let fld_mod_Name =this.framework.recuperarElemento("mod_Name") as HTMLInputElement;
+            let fld_mod_Desc =this.framework.recuperarElemento("mod_Desc") as HTMLInputElement;
+            let sel_mod_Estado =this.framework.recuperarElemento("inputType") as HTMLInputElement;
+            let sel_mod_Tipo   =this.framework.recuperarElemento("inputType2") as HTMLInputElement;
+            fld_mod_Name.value="Nombre Amigo";
+            fld_mod_Desc.value="eh descripciòn ";
+            
+            //let nombrecard=card.textContent.substring(1,190);
+            //console.log(nombrecard);
+
+            console.log("lo que leo de id del Elemento es : " +objetoEvento.id.substring(7))
+            alert("nada");
+
+        //----------------- BORRAR ELEMENTO -----------------//                     
+        
+    } else if (e.type == "click" && ( objetoEvento.id.startsWith("btn_del"))){
+      
+            console.log("Se hizo click en  " + objetoEvento.id,)
+           
+            let datos=({ "id": objetoEvento.id.substring(7)})
+            console.log("Se busca eliminar el registro - > " + objetoEvento.id.substring(7))
+            this.framework.ejecutarRequest("POST","http://localhost:8000/eliminar", this,datos)
+
             //alert("Hola " +  this.listaPersonas[0].nombre +" ");    
+
+        //----------------- NUEVO ELEMENTO -----------------// 
         } 
         else if(e.type == "click" && ( objetoEvento.id.startsWith("btnSalvarNew"))){
                 console.log(objetoEvento.id,)
-                let fld_new_Name =this.framework.recuperarElemento("new_Name")  as HTMLInputElement;
+                let fld_new_Name =this.framework.recuperarElemento("new_Name") as HTMLInputElement;
                 let fld_new_Desc =this.framework.recuperarElemento("new_Desc") as HTMLInputElement;
+                let sel_new_Estado =this.framework.recuperarElemento("sel_control") ;
+                let sel_new_Tipo =this.framework.recuperarElemento("sel_dispositivo") ;
+                let state = 0;
+                let type = 0;
+
                 if((fld_new_Name.value =='')||(fld_new_Desc.value ==''))
                 {
                     alert("No se almacenarán campos vacíos")
                 }
                 else 
-                {  // { "id": 7, "name": "Lámpara 3", "description": "Luz Balcón", "state": 1, "type": 1 }
-                    let datos = { "id": 7, "name": fld_new_Name.value, "description": fld_new_Desc.value, "state": 1, "type": 1 };
+                {  
+                    let datos = { "id": index_data+1, "name": fld_new_Name.value, "description": fld_new_Desc.value, "state": state, "type": type };
                     console.log(datos)
                     this.framework.ejecutarRequest("POST","http://localhost:8000/nuevo", this,datos)
                 }
-   
+                alert("para ver estado")
+        //----------------- MODIFICAR ELEMENTO -----------------// 
         }
         else if(e.type == "click" && ( objetoEvento.id.startsWith("btnSalvarMod"))){
             console.log(objetoEvento.id,)
@@ -183,13 +241,17 @@ class Main implements EventListenerObject, ResponseLister {
                 alert("No se modificarán campos vacíos")
             }
             else 
-            {  // { "id": 7, "name": fld_mod_Name.value, "description": fld_mod_Desc.value, "state": 1, "type": 1 }
-                let datos = { "id": 7, "name": fld_mod_Name.value, "description": fld_mod_Desc.value, "state": 1, "type": 1 };
+            {  
+                let datos = { "id": id_Card, "name": fld_mod_Name.value, "description": fld_mod_Desc.value, "state": 1, "type": 1 };
                 console.log(datos)
                 this.framework.ejecutarRequest("POST","http://localhost:8000/modificar", this,datos)
             }
 
     }
+    /*else if(e.type == "select" ){
+        console.log("alerta por select " + objetoEvento.id,)
+  
+}*/
         
         
         
@@ -215,15 +277,17 @@ window.addEventListener("load", () => {
     M.updateTextFields();
     var elems1 = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems1, "");
-    //let btn = document.getElementById("btnSaludar");
-    //let btn2 = document.getElementById("btnDoble");
     let main: Main = new Main();
     main.nombre = "Matias"
 
-    //btn2.addEventListener("dblclick", main);
-    //btn.addEventListener("click", main);
     this.btnSalvarNew.addEventListener("click", main); //Se agega Listener para boton del modal de Agregar Dispositivo
     this.btnSalvarMod.addEventListener("click", main); //Se agega Listener para boton del modal de Modificar Dispositivo
+    this.sel_control.addEventListener("click", main); //Se agega Listener para boton del modal de Modificar Dispositivo
+    this.sel_dispositivo.addEventListener("click", main); //Se agega Listener para boton del modal de Modificar Dispositivo
+    /*this.document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select');
+        var instance = M.FormSelect.init(elems, Option);
+      });*/
 });
 
 
