@@ -185,7 +185,9 @@ Al presionar edit, se abrará una pantalla similar a la de dispositivo nuevo par
 
 ### Frontend
 
-Completá todos los detalles sobre cómo armaste el frontend, sus interacciones, etc.
+La implementación del Frontend se realizó en Typescript y se utilizó matraialize como estilo para el diseño de la página web.
+
+
 
 ### Backend
 
