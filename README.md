@@ -242,32 +242,126 @@ A continuación te detallamos algunas de las interacciones.
 
 ### Backend
 
-Completá todos los detalles de funcionamiento sobre el backend, sus interacciones con el cliente web, la base de datos, etc.
+Interacción con el backend
 
 <details><summary><b>Ver los endpoints disponibles</b></summary><br>
 
 Completá todos los endpoints del backend con los metodos disponibles, los headers y body que recibe, lo que devuelve, ejemplos, etc.
 
-1) Devolver el estado de los dispositivos.
+1) Pido el listado de dispositivos
 
 ```json
 {
     "method": "get",
+    "route": "/devices",
     "request_headers": "application/json",
     "request_body": "",
     "response_code": 200,
-    "request_body": {
-        "devices": [
+    "response_body": {
+        "data": [
             {
-                "id": 1,
-                "status": true,
-                "description": "Kitchen light"
+                "id": "id del dispositivo",
+                "name": "nombre del dispositivo,
+                "description": "descripción del dispositivo",
+                "state: "estado del dispositivo 0 = off 1 = on 2 = vacío,
+                "type": "tipo de dispositivo 0 = vacío 1 = luces 2 = persianas 3 = otros"
             }
         ]
     },
 }
 ``` 
+2) Actualiza el estado de un dispositivo (switch)
 
+```json
+{
+    "method": "post",
+    "route": "/actualizar",
+    "request_headers": "application/json",
+    "request_body": {
+                    "datos": [
+                                {
+                                    "id": "id del dispositivo",
+                                    "state: "estado del dispositivo 0 = off 1 = on 2 = vacío,
+                                }
+                            ]
+                    },
+    "response_code": 200,
+    "response_body": {"actualizo"
+                     },
+}
+``` 
+3) Agrego un dispositivo nuevo
+
+```json
+{
+    "method": "post",
+    "route": "/nuevo",
+    "request_headers": "application/json",
+    "request_body": {
+                    "datos": [
+                                {
+                                    "id": "id del dispositivo",
+                                    "name": "nombre del dispositivo,
+                                    "description": "descripción del dispositivo",
+                                    "state: "estado del dispositivo 0 = off 1 = on 2 = vacío,
+                                    "type": "tipo de dispositivo 0 = vacío 1 = luces 2 = persianas 3 = otros"
+                                }
+                            ]
+                    },
+    "response_code": 200,
+    "response_body": {"new_ok"
+                     },
+}
+``` 
+    
+4) Modifico un dispositivo
+
+```json
+{
+    "method": "post",
+    "route": "/modificar",
+    "request_headers": "application/json",
+    "request_body": {
+                    "datos": [
+                                {
+                                    "id": "id del dispositivo",
+                                    "name": "nombre del dispositivo,
+                                    "description": "descripción del dispositivo",
+                                    "state: "estado del dispositivo 0 = off 1 = on 2 = vacío,
+                                    "type": "tipo de dispositivo 0 = vacío 1 = luces 2 = persianas 3 = otros"
+                                }
+                            ]
+                    },
+    "response_code": 200,
+    "response_body": {"mod_ok"
+                     },
+}
+``` 
+    
+5) Elimino un dispositivo
+
+```json
+{
+    "method": "post",
+    "route": "/eliminar",
+    "request_headers": "application/json",
+    "request_body": {
+                    "datos": [
+                                {
+                                    "id": "id del dispositivo",
+                                }
+                            ]
+                    },
+    "response_code": 200,
+    "response_body": {"del_ok"
+                     },
+}
+``` 
+    
+    
+    
+    
+    
 </details>
 
 </details>
