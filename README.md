@@ -220,8 +220,25 @@ Contiene la implementaciòn del frontend donde se realiza las interacciones con 
 
 A continuación te detallamos algunas de las interacciones.
     
-   ![](doc/front_files.png)   
+ - > Carga de la página WEB
+    
+   ![](doc/req_get.png)   
 
+ - > Al actualizar el estado de un dispositivo por medio del switch on/off
+    
+   ![](doc/req_post_actualizar.png)  
+    
+ - > Eliminar un dispositivo
+    
+   ![](doc/req_post_eliminar.png)  
+    
+ - > Agregar un dispositivo
+    
+   ![](doc/req_post_nuevo.png)  
+    
+ - > Modificar un dispositivo
+    
+   ![](doc/req_post_modificar.png)  
 
 ### Backend
 
