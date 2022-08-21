@@ -172,12 +172,14 @@ Allí aparecerá el siguiente formulario para cargar los datos relevantes del di
 Completá el formulario y luego presiona Salvar.
     
 Al salvar la página la misma se cargará con las modificaciones efectuadas, en el caso de haber un error lo informará mediante una ventana. Cabe aclarar que el formulario verifica que los campos estén completos, si no lo están aparecerá una leyenda como la siguiente.
+
+Si no querés interrumpir el proceso de carga, posés abandonar el formulario presionando el botón SALIR
     
    ![](doc/no_empty.png)
     
 ### Modificar/Eliminar un dispositivo
     
-Cada dispositivo que se agrega se representa mediante un tarjeta, en ella podrás modificar de manera directa el estado, editar o eliminar el dispositivo mediante los botones presentes en la misma.
+Cada dispositivo que se agrega se representa mediante un tarjeta, en ella podrás modificar de manera directa el estado, editar o eliminar el dispositivo mediante los botones EDIT y DEL.
     
    ![](doc/card.png)
     
@@ -189,13 +191,13 @@ La implementación del Frontend se realizó en TypeScript y se utilizó matraial
 
 El frontend cuenta con la siguiente estructura de archivos.
 
-   ![](doc/back_files.png)
+   ![](doc/front_files.png)
    
 Detalles de los archivos
 
 `tsconfig.json` 
 
-En este archivo se especifican las opciones para el compilador
+En este archivo se especifican las opciones para el compilador de TypeScript
 
 `ResponseLister.ts` 
 
@@ -215,6 +217,8 @@ Se declara la class Devices como estructura
 `main.ts` 
 
 Contiene la implementaciòn del frontend donde se realiza las interacciones con el backend y la web page.
+
+A continuación te detallamos algunas de las interacciones.
 
 
 ### Backend
