@@ -244,7 +244,7 @@ window.addEventListener("load", () => {
     var elems1 = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems1, "");
     let main: Main = new Main();
-
+    console.log("window")
     this.btnSalvarNew.addEventListener("click", main); //Se agega Listener para boton del modal de Agregar Dispositivo
     this.btnSalvarMod.addEventListener("click", main); //Se agega Listener para boton del modal de Modificar Dispositivo
 });
