@@ -263,7 +263,7 @@ Completá todos los endpoints del backend con los metodos disponibles, los heade
                 "id": "id del dispositivo",
                 "name": "nombre del dispositivo,
                 "description": "descripción del dispositivo",
-                "state: "estado del dispositivo 0 = off 1 = on 2 = vacío,
+                "state: "estado del dispositivo 0 = off 1 = on 2 = vacío",
                 "type": "tipo de dispositivo 0 = vacío 1 = luces 2 = persianas 3 = otros"
             }
         ]
@@ -281,7 +281,7 @@ Completá todos los endpoints del backend con los metodos disponibles, los heade
                     "datos": [
                                 {
                                     "id": "id del dispositivo",
-                                    "state: "estado del dispositivo 0 = off 1 = on 2 = vacío,
+                                    "state: "estado del dispositivo 0 = off 1 = on 2 = vacío",
                                 }
                             ]
                     },
@@ -303,7 +303,7 @@ Completá todos los endpoints del backend con los metodos disponibles, los heade
                                     "id": "id del dispositivo",
                                     "name": "nombre del dispositivo,
                                     "description": "descripción del dispositivo",
-                                    "state: "estado del dispositivo 0 = off 1 = on 2 = vacío,
+                                    "state: "estado del dispositivo 0 = off 1 = on 2 = vacío",
                                     "type": "tipo de dispositivo 0 = vacío 1 = luces 2 = persianas 3 = otros"
                                 }
                             ]
@@ -327,7 +327,7 @@ Completá todos los endpoints del backend con los metodos disponibles, los heade
                                     "id": "id del dispositivo",
                                     "name": "nombre del dispositivo,
                                     "description": "descripción del dispositivo",
-                                    "state: "estado del dispositivo 0 = off 1 = on 2 = vacío,
+                                    "state: "estado del dispositivo 0 = off 1 = on 2 = vacío",
                                     "type": "tipo de dispositivo 0 = vacío 1 = luces 2 = persianas 3 = otros"
                                 }
                             ]
